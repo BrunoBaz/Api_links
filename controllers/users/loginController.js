@@ -27,7 +27,7 @@ const loginController = async (req, res, next) => {
     const payload = { id: user.id };
 
     ///firmo el token
-    const token = jwt.sign(payload, process.env.secret, {
+    const token = jwt.sign(payload, process.env.SECRET, {
       expiresIn: '30d',
     });
 

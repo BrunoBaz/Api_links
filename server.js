@@ -1,4 +1,5 @@
 //REQUERIMIENTOS
+require('dotenv').config();
 const express = require('express');
 const expressFileUpload = require('express-fileupload');
 const morgan = require('morgan');

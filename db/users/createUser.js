@@ -3,57 +3,46 @@
 const { generateError } = require('../../helpers');
 const { getConnection } = require('../db');
 const bcrypt = require('bcrypt');
-const createUser = async (name, avatar = '', nick_name, email, password) => {
-  console.log('entramos a la función que crea un usuario nuevo');
+const createUser = async (email, password, userName, nombre) => {
   let connection;
   try {
     connection = await getConnection();
-
-    //comprueba que no existe otro usuario con ese email
-    const [user_email] = await connection.query(
-      `
-          SELECT id FROM users WHERE email = ?
-          `,
+    //Comprobar que no exista otro usuario con ese email
+    const [user] = await connection.query(
+      `SELECT id FROM users WHERE email=?`,
       [email]
     );
-    ////si no devuelve error 409
-    if (user_email.length > 0) {
-      throw generateError(`Ya existe una cuenta con ${email}`, 409);
+    if (user.length > 0) {
+      throw generateError(
+        'Ya existe un usuario en la base de datos con ese email',
+        409 //Conflict
+      );
     }
 
-    //comprueba que no existe otro usuario con ese nickname
-    const [user_name] = await connection.query(
+    const [userNameResult] = await connection.query(
       `
-        SELECT id FROM users WHERE nick_name = ?
-         `,
-      [nick_name]
+    SELECT userName FROM users WHERE userName =?`,
+      [userName]
     );
-    ///si no devuelve error 409
-    if (user_name.length > 0) {
-      throw generateError(`Lo sentimos pero ${nick_name} ya esta en uso`, 409);
+    if (userNameResult.length > 0) {
+      throw generateError(
+        'Ya existe un usuario en la base de datos con ese nombre de usuario'
+      );
     }
-
-    //encripta la password
+    //Encriptar la password
     const passwordHash = await bcrypt.hash(password, 8);
 
-    //si no detecta nombre en el registro pone el mismo el el nickname
-    if (name.length <= 0) {
-      name = `${nick_name}`;
-    }
-
-    //crea usuario
-    const [newUser] = await connection.query(
-      `
-      INSERT INTO users (name, avatar, nick_name, email, password) VALUES (?, ?, ?, ?, ?)
-          `,
-      [name, avatar, nick_name, email, passwordHash]
+    //Crear el usuario
+    const [newuser] = await connection.query(
+      `INSERT INTO users (email, password, userName, nombre) VALUES(?,?,?,?)`,
+      [email, passwordHash, userName, nombre]
     );
-
-    //devuelve ID
-    return newUser.insertId;
+    //Devolver el id
+    return newuser.insertId;
   } finally {
-    //se carga a la base de datos
-    if (connection) connection.release();
+    if (connection) {
+      connection.release();
+    }
   }
 };
 
