@@ -1,3 +1,4 @@
+const { generateError } = require('../../helpers');
 const { getConnection } = require('../db');
 
 const getAllPost = async () => {
@@ -8,6 +9,9 @@ const getAllPost = async () => {
     const [result] = await connection.query(
       `SELECT * FROM links ORDER BY created_at DESC`
     );
+    if (result[0] === undefined) {
+      throw generateError(`No existe ningún post`, 404);
+    }
     return result;
   } finally {
     if (connection) {

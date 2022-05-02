@@ -1,3 +1,4 @@
+const { generateError } = require('../../helpers');
 const { getConnection } = require('../db');
 
 const getSinglePost = async (id) => {
@@ -8,6 +9,9 @@ const getSinglePost = async (id) => {
       `SELECT links.url, links.titulo, links.descripcion, COUNT(v.post_id) AS votes FROM links, votes v WHERE links.id=v.post_id AND links.id=? GROUP BY links.id`,
       [id]
     );
+    if (result[0] === undefined) {
+      throw generateError(`No existe el post con id:${id}`, 404);
+    }
     return result;
   } finally {
     if (connection) {
@@ -16,4 +20,3 @@ const getSinglePost = async (id) => {
   }
 };
 module.exports = { getSinglePost };
-//      `SELECT e.url, e.titulo, e.descripcion, COUNT(v.post_id) FROM enlaces e, votes v WHERE e.id=?`,
