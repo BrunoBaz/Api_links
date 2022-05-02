@@ -1,4 +1,4 @@
-const { getUserById } = require('../db/users');
+const { getUserById } = require('../../db/users/getUserById');
 
 //FUNCION PARA CONTROLAR USUARIO
 const getUserController = async (req, res, next) => {
@@ -17,6 +17,5 @@ const getUserController = async (req, res, next) => {
 };
 
 module.exports = {
-    getUserController,
-  };
-  
+  getUserController,
+};

@@ -1,5 +1,5 @@
-const { generateError } = require('../helpers');
-const { getConnection } = require('./db');
+const { generateError } = require('../../helpers');
+const { getConnection } = require('../db');
 
 //FUNCION QUE DEVULVE LA INFORMACIÓN DE UN USUARIO POR SU EMAIL
 const getUserByEmail = async (email) => {
@@ -24,12 +24,10 @@ const getUserByEmail = async (email) => {
 
     return result[0];
   } finally {
-    if (connection)
-      connection.release();
+    if (connection) connection.release();
   }
 };
 
-
 module.exports = {
-    getUserByEmail,
-  };
+  getUserByEmail,
+};

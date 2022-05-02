@@ -37,17 +37,18 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //RUTAS DE USERS
-app.post('/user', newUserController); 
+app.post('/user', newUserController);
 app.get('/user/:id', getUserController);
 app.post('/login', loginController);
-app.put('/user/:id', authUser,userProfileController);
+app.put('/user/:id', authUser, userProfileController);
 
 //RUTAS DE LINKS
-app.post('/', authUser, newLinkController);
-app.get('/', getLinksController);
-app.get('/link/:id', getSingleLinkController);
-app.post('/link/:id', likesController);
-app.delete('/link/:id', authUser, deleteLinkController);
+app.post('/link', authUser, newLinkController); //Crear un nuevo post
+app.get('/link', getAllLinksController); //Seleccionar todos los posts
+app.get('/link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
+app.get('/link/:id', getSinglePostController); //Seleccionar post específico
+app.delete('/link/:id', authUser, deleteLinkController); //Eliminar un post
+app.post('/link/:id/votes', authUser, voteLinkController); //Añadir un voto a un post especifico
 
 //Middleware de error 404
 app.use((req, res) => {
