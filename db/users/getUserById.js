@@ -11,7 +11,7 @@ const getUserById = async (id) => {
 
     const [result] = await connection.query(
       `
-      SELECT id, email, created_at FROM users WHERE id=?
+      SELECT * FROM users WHERE id=?
       `,
       [id]
     );
