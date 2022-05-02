@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { generateError } = require('../helpers');
-const { getUserByEmail } = require('../db/users');
+const { generateError } = require('../../helpers');
+const { getUserByEmail } = require('../../db/users/getUserByEmail');
 
 //FUNCION PARA CONTROLAR LOGIN
 const loginController = async (req, res, next) => {
@@ -41,8 +41,7 @@ const loginController = async (req, res, next) => {
   }
 };
 
-
 //EXPORTAR FUNCIONES
 module.exports = {
-    loginController,
-  };
+  loginController,
+};

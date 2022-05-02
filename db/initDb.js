@@ -52,7 +52,7 @@ async function main() {
           id INTEGER PRIMARY KEY AUTO_INCREMENT,
           post_id INTEGER NOT NULL,
           post_user_id INTEGER NOT NULL,
-          FOREIGN KEY (post_id) REFERENCES enlaces(id),
+          FOREIGN KEY (post_id) REFERENCES links(id),
           FOREIGN KEY (post_user_id) REFERENCES users(id)
       );
       `);

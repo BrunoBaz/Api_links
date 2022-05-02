@@ -1,5 +1,5 @@
-const { generateError } = require('../helpers');
-const { getConnection } = require('./db');
+const { generateError } = require('../../helpers');
+const { getConnection } = require('../db');
 
 //FUNCION QUE DEVULVE LA INFORMACIÓN DE UN USUARIO POR SU ID
 const getUserById = async (id) => {
@@ -22,11 +22,10 @@ const getUserById = async (id) => {
 
     return result[0];
   } finally {
-    if (connection)
-      connection.release();
+    if (connection) connection.release();
   }
 };
 
 module.exports = {
-    getUserById,
-  };
+  getUserById,
+};
