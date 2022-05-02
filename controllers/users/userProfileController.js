@@ -1,7 +1,7 @@
 const { createPathIfNotExists } = require('../../helpers');
 const path = require('path');
 const sharp = require('sharp');
-const nanoid = require('nanoid');
+const { nanoid } = require('nanoid');
 const { userProfile } = require('../../db/users/userProfile');
 
 const userProfileController = async (req, res, next) => {
@@ -11,7 +11,7 @@ const userProfileController = async (req, res, next) => {
     //console.log(req.files);
     if (req.files && req.files.imagen) {
       //Creo path directorio uploads
-      const uploadsDir = path.resolve(__dirname, '../../uploads');
+      const uploadsDir = path.resolve(__dirname, '../../img/avatars/uploads');
       await createPathIfNotExists(uploadsDir);
       //creo el directorio si no existe
       //Procesar la imagen
