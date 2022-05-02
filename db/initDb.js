@@ -26,7 +26,7 @@ async function main() {
           id INTEGER PRIMARY KEY AUTO_INCREMENT,
           email VARCHAR(100) UNIQUE NOT NULL,
           password VARCHAR(100) NOT NULL,
-          userName VARCHAR(50),
+          userName VARCHAR(50) NOT NULL,
           nombre VARCHAR(100) NOT NULL,
          imagen VARCHAR(100) DEFAULT "avatar.png",
            biografia TEXT,
