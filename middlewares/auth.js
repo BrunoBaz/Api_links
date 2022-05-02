@@ -19,7 +19,7 @@ const authUser = (req, res, next) => {
     let token;
 
     try {
-      token = jwt.verify(authorization, process.env.secret);
+      token = jwt.verify(authorization, process.env.SECRET);
     } catch {
       throw generateError('Token incorrecto', 401);
     }

@@ -5,7 +5,7 @@ const getSinglePost = async (id) => {
   try {
     connection = await getConnection();
     const [result] = await connection.query(
-      `SELECT links.url, links.titulo, links.descripcion, COUNT(v.post_id) AS votes FROM links, votes v WHERE links.id=v.post_id AND links.id=? GROUP BY enlaces.id`,
+      `SELECT links.url, links.titulo, links.descripcion, COUNT(v.post_id) AS votes FROM links, votes v WHERE links.id=v.post_id AND links.id=? GROUP BY links.id`,
       [id]
     );
     return result;
