@@ -36,6 +36,9 @@ const app = express();
 app.use(expressFileUpload());
 app.use(express.json());
 app.use(morgan('dev'));
+//APPS STATICAS
+app.use('/uploads', express.static('./img/avatars/uploads'));
+app.use('/default', express.static('./img/avatars/default/'));
 
 //RUTAS DE USERS
 app.post('/user', newUserController);
