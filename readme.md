@@ -24,7 +24,7 @@ API para compartir enlaces.
 ### -Votes:
 - id-------------*(se genera automaticamente)*
 - post_id--------*(obligatorio)*
-- post_user_id---*(obligatorio)
+- post_user_id---*(obligatorio)*
 
 
 ## Endpoints
@@ -32,7 +32,6 @@ API para compartir enlaces.
 ### -**POST /user** Registro de usuario✔
 #### -VALIDACIÓN✔
 - **Name:** *opcional*
-  -*Minimo 5 y maximo 10 caracteres*
 - **userName:**
   -*Debe de ser único*
 - **Email:**
@@ -47,12 +46,27 @@ API para compartir enlaces.
   -*Tiene qe existir en la base de datos*
 - **Password:**
   -*tiene que ser el correcto para el userName*
+### -**PUT /user/:id** Editar el perfil de usuario✔
+#### -VALIDACIÓN✔
+- **User_id:**
+  -*Necesario token*
+  
+- **Name:** *opcional*
+- **userName:**
+  -*Debe de ser único*
+- **Image:** *opcional*
+- **Telefono:** *opcional*
+- **Biografia:** *opcional*
+- **Email:**
+  -*Debe ser un email valido*
+  -*Debe de ser único*
 
 ### -**GET /user/:id** Devuelve información de usuario✔
 #### -VALIDACIÓN✔
 - **User_id:**
+  -*Necesario token*
 
-### -**POST /** Permite crear un link✔
+### -**POST /link** Permite crear un link✔
 #### -VALIDACIÓN✔
 - **User_id:**
   -*Necesario token*
@@ -63,7 +77,7 @@ API para compartir enlaces.
 - **Descripcion:**
   -*Debe debe tener 280 caracteres como máximo*
 
-### -**GET /** Lista todos los Links✔
+### -**GET /link** Lista todos los Links✔
 #### -VALIDACIÓN✔
   -*No necesita ninguna validación*
 
