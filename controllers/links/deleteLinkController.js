@@ -6,7 +6,9 @@ const deleteLinkController = async (req, res, next) => {
     const { id } = req.params;
     //Adquirimos id del post de la BD
     const post = await getSinglePost(id);
-
+    if (!post.id) {
+      throw generateError(`No existe ningún post con id ${id}`, 404);
+    }
     //Comprobar que el usuario del token es el mismo
     if (req.userId !== post.user_id) {
       throw generateError(
@@ -14,6 +16,7 @@ const deleteLinkController = async (req, res, next) => {
         401
       );
     }
+
     await deleteSinglePost(id);
     res.send({
       status: 'ok',
