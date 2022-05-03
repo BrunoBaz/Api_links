@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "7def251c-830a-41f3-a51a-f6042f18ea97",
+		"name": "API_ENLACES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "Get user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/home/bruno/Descargas/attack.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/user/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"pm.environment.set(\"token\", jsonData.data);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"aaaaaaaaasaaaaaa@aaaaa.com\",\n\"password\":\"34adaad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"aaaaaaaaasaaaaaa@aaaaa.com\",\n\"password\":\"34adaad\",\n\n\"nombre\": \"brunoa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userName",
+									"value": "Varuwolf",
+									"type": "text"
+								},
+								{
+									"key": "nombre",
+									"value": "Bruno Baz",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "bbaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"type": "file",
+									"src": "/home/bruno/Descargas/attack.jpeg"
+								},
+								{
+									"key": "biografia",
+									"value": "Probando que funcione",
+									"type": "text"
+								},
+								{
+									"key": "telefono",
+									"value": "604025385",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/user/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LINKS",
+			"item": [
+				{
+					"name": "Get All Links",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUxMTU2MjEzfQ.l58nEBwA8wqKZV1wo6L53tgrTTkgPde3T1i1Pd4xu-E",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/link",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get SIngle Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/link/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Voted Links",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/link/votes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link",
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New link post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://www.google.com\",\n    \"titulo\":\"prueba1\",\n    \"descripcion\":\"Buscador de paginas web\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/link",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vote post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/link/1/votes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link",
+								"1",
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Single Link",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjUwOTgxMjgwfQ.y1F26hPPnjjUnJh-jtig1sWRJ_QNfkGXFnvI5prJPB0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/link/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"link",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
