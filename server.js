@@ -23,26 +23,31 @@ const {
 
 //Controladores usuarios
 const { getUserController } = require('./controllers/users/getUserController');
+const {
+  getMyUserController,
+} = require('./controllers/users/getMyUserController');
 const { loginController } = require('./controllers/users/loginController');
 const { newUserController } = require('./controllers/users/newUserController');
 const {
   userProfileController,
 } = require('./controllers/users/userProfileController');
 
+const cors = require('cors');
 const { authUser } = require('./middlewares/auth');
 const app = express();
 
 //APPS
+app.use(cors());
 app.use(expressFileUpload());
 app.use(express.json());
 app.use(morgan('dev'));
 //APPS STATICAS
-app.use('/uploads', express.static('./img/avatars/uploads'));
-app.use('/default', express.static('./img/avatars/default/'));
+app.use('/avatar', express.static('./avatar'));
 
 //RUTAS DE USERS
 app.post('/user', newUserController);
 app.get('/user/:id', getUserController);
+app.get('/user/', authUser, getMyUserController);
 app.post('/login', loginController);
 app.put('/user/:id', authUser, userProfileController);
 
@@ -71,6 +76,6 @@ app.use((error, req, res, next) => {
 });
 
 //LANZAMOS
-app.listen(3000, () => {
-  console.log(`Servidor en localhost:3000`);
+app.listen(4000, () => {
+  console.log(`Servidor en localhost:4000`);
 });

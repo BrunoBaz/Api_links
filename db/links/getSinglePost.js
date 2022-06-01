@@ -6,13 +6,15 @@ const getSinglePost = async (id) => {
   try {
     connection = await getConnection();
     const [result] = await connection.query(
-      `SELECT links.url, links.titulo, links.descripcion, COUNT(v.post_id) AS votes FROM links LEFT JOIN votes v ON links.id=v.post_id AND links.id=? GROUP BY links.id`,
+      `SELECT links.id, links.url, links.titulo, links.descripcion, links.user_id, COUNT(v.post_id) AS votes FROM links LEFT JOIN votes v ON links.id=v.post_id AND links.id=? GROUP BY links.id ORDER BY links.id DESC`,
       [id]
     );
+    console.log(result);
     if (result[0] === undefined) {
       throw generateError(`No existe el post con id:${id}`, 404);
     }
-    return result;
+    console.log('result', result[0]);
+    return result[0];
   } finally {
     if (connection) {
       connection.release();

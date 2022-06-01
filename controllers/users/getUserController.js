@@ -9,7 +9,7 @@ const getUserController = async (req, res, next) => {
 
     res.send({
       status: 'ok',
-      message: user,
+      data: user,
     });
   } catch (error) {
     next(error);

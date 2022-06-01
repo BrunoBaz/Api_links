@@ -1,6 +1,6 @@
 const { createPost } = require('../../db/links/createPost');
 const { validateUrl } = require('../../validators/validateUrl');
-
+const { getSinglePost } = require('../../db/links/getSinglePost');
 const newLinkController = async (req, res, next) => {
   try {
     const { url, titulo, descripcion } = req.body;
@@ -11,9 +11,11 @@ const newLinkController = async (req, res, next) => {
       titulo,
       descripcion
     );
+    const link = await getSinglePost(id);
+
     res.send({
       status: 'ok',
-      message: `Post con id: ${id} creado correctamente`,
+      data: link,
     });
   } catch (error) {
     next(error);
