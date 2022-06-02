@@ -28,7 +28,7 @@ async function main() {
           password VARCHAR(100) NOT NULL,
           userName VARCHAR(50) NOT NULL,
           nombre VARCHAR(100) NOT NULL,
-         imagen VARCHAR(100) DEFAULT "avatar.png",
+         imagen VARCHAR(100) DEFAULT "avatar-default.svg",
            biografia TEXT,
           telefono VARCHAR(20),
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP
