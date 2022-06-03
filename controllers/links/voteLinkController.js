@@ -4,11 +4,11 @@ const voteLinkController = async (req, res, next) => {
     const { id } = req.params;
     const userId = req.userId;
 
-    await votePost(id, userId);
-
+    const result = await votePost(id, userId);
+    console.log(result);
     res.send({
       status: 'ok',
-      message: 'Voto enviado',
+      data: result,
     });
   } catch (error) {
     next(error);
