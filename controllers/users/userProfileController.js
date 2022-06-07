@@ -3,15 +3,19 @@ const path = require('path');
 const sharp = require('sharp');
 const { nanoid } = require('nanoid');
 const { userProfile } = require('../../db/users/userProfile');
+const { getUserById } = require('../../db/users/getUserById');
+const { getUserByUserName } = require('../../db/users/getUserByUserName');
+const { getUserByEmail } = require('../../db/users/getUserByEmail');
 
 const userProfileController = async (req, res, next) => {
   try {
     const { userName, nombre, email, biografia, telefono } = req.body;
+    const user = await getUserById(req.userId);
     let imageFileName;
     //console.log(req.files);
     if (req.files && req.files.imagen) {
       //Creo path directorio uploads
-      const uploadsDir = path.resolve(__dirname, '../../img/avatars/uploads');
+      const uploadsDir = path.resolve(__dirname, '../../avatar');
       await createPathIfNotExists(uploadsDir);
       //creo el directorio si no existe
       //Procesar la imagen
@@ -21,19 +25,21 @@ const userProfileController = async (req, res, next) => {
       imageFileName = `${nanoid()}.jpg`;
       await image.toFile(path.join(uploadsDir, imageFileName));
     }
-    await userProfile(
-      userName,
-      nombre,
-      email,
-      imageFileName,
-      biografia,
-      telefono,
+    const data = await userProfile(
+      userName ? userName : user.userName,
+      nombre ? nombre : user.nombre,
+      email ? email : user.email,
+      imageFileName ? imageFileName : user.imagen,
+      biografia ? biografia : user.biografia,
+      telefono ? telefono : user.telefono,
 
       req.userId
     );
+    await getUserByUserName(userName);
+    await getUserByEmail(email);
     res.send({
       status: 'ok',
-      message: `Usuario con id:${req.userId} ha modificado su cuenta.`,
+      data: data,
     });
   } catch (error) {
     next(error);

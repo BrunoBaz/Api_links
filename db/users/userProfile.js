@@ -1,4 +1,5 @@
 const { getConnection } = require('../db');
+const { getUserById } = require('./getUserById');
 
 const userProfile = async (
   userName,
@@ -12,13 +13,14 @@ const userProfile = async (
   let connection;
   try {
     connection = await getConnection();
-    const [result] = await connection.query(
+    await connection.query(
       `
     UPDATE users  SET userName=?,nombre = ?, email = ? ,imagen = ?, biografia = ?, telefono = ?
     WHERE id=?`,
       [userName, nombre, email, imagen, biografia, telefono, id]
     );
-    return result.insertId;
+    const userModified = await getUserById(id);
+    return userModified;
   } finally {
     if (connection) {
       connection.release();

@@ -9,6 +9,9 @@ async function main() {
 
     console.log('borrando tablas existentes');
     await connection.query(`
+      DROP TABLE IF EXISTS follow;
+      `);
+    await connection.query(`
       DROP TABLE IF EXISTS votes;
       `);
 
@@ -54,6 +57,15 @@ async function main() {
           post_user_id INTEGER NOT NULL,
           FOREIGN KEY (post_id) REFERENCES links(id),
           FOREIGN KEY (post_user_id) REFERENCES users(id)
+      );
+      `);
+    await connection.query(`
+      CREATE TABLE follow (
+          id INTEGER PRIMARY KEY AUTO_INCREMENT,
+          user_id INTEGER NOT NULL,
+         follower_id INTEGER NOT NULL,
+          FOREIGN KEY (follower_id) REFERENCES users(id),
+          FOREIGN KEY (user_id) REFERENCES users(id)
       );
       `);
   } catch (error) {

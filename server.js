@@ -20,6 +20,9 @@ const {
 const {
   getAllLinksWithVotesController,
 } = require('./controllers/links/getAllLinksWithVotesController');
+const {
+  getAllLinksWithVotesByIdController,
+} = require('./controllers/links/getAllLinksWithVotesByIdController ');
 
 //Controladores usuarios
 const { getUserController } = require('./controllers/users/getUserController');
@@ -31,6 +34,9 @@ const { newUserController } = require('./controllers/users/newUserController');
 const {
   userProfileController,
 } = require('./controllers/users/userProfileController');
+const {
+  followUserController,
+} = require('./controllers/users/followUserController');
 
 const cors = require('cors');
 const { authUser } = require('./middlewares/auth');
@@ -50,11 +56,13 @@ app.get('/user/:id', getUserController);
 app.get('/user/', authUser, getMyUserController);
 app.post('/login', loginController);
 app.put('/user/:id', authUser, userProfileController);
+app.post('/user/:id/follow', authUser, followUserController);
 
 //RUTAS DE LINKS
 app.post('/link', authUser, newLinkController); //Crear un nuevo post
 app.get('/link', getAllLinksController); //Seleccionar todos los posts
 app.get('/link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
+app.get('/link/votes/:id', getAllLinksWithVotesByIdController); //Seleccionar todos los posts con votos
 app.get('/link/:id', getSinglePostController); //Seleccionar post específico
 app.delete('/link/:id', authUser, deleteLinkController); //Eliminar un post
 app.post('/link/:id/votes', authUser, voteLinkController); //Añadir un voto a un post especifico
