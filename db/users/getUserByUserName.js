@@ -16,9 +16,7 @@ const getUserByUserName = async (userName) => {
       [userName]
     );
 
-    if (result.length === 0) {
-      throw generateError('No hay ningun usuario con ese id', 404);
-    } else if (result.length > 1) {
+    if (result.length > 1) {
       throw generateError('El nombre de usuario ya está en uso');
     }
 

@@ -5,7 +5,7 @@ const voteLinkController = async (req, res, next) => {
     const userId = req.userId;
 
     const result = await votePost(id, userId);
-    console.log(result);
+
     res.send({
       status: 'ok',
       data: result,

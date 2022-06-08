@@ -25,6 +25,8 @@ const userProfileController = async (req, res, next) => {
       imageFileName = `${nanoid()}.jpg`;
       await image.toFile(path.join(uploadsDir, imageFileName));
     }
+    await getUserByUserName(userName);
+    await getUserByEmail(email);
     const data = await userProfile(
       userName ? userName : user.userName,
       nombre ? nombre : user.nombre,
@@ -35,8 +37,7 @@ const userProfileController = async (req, res, next) => {
 
       req.userId
     );
-    await getUserByUserName(userName);
-    await getUserByEmail(email);
+
     res.send({
       status: 'ok',
       data: data,

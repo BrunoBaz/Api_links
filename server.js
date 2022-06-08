@@ -35,8 +35,17 @@ const {
   userProfileController,
 } = require('./controllers/users/userProfileController');
 const {
-  followUserController,
-} = require('./controllers/users/followUserController');
+  getFollowerUserController,
+} = require('./controllers/users/getFollowerUserController');
+const {
+  getFollowUserController,
+} = require('./controllers/users/getFollowUserController ');
+const {
+  createFollowerUserController,
+} = require('./controllers/users/createFollowerUserController');
+const {
+  getLikesFromUsersController,
+} = require('./controllers/users/getLikesFromUsersController');
 
 const cors = require('cors');
 const { authUser } = require('./middlewares/auth');
@@ -53,10 +62,14 @@ app.use('/avatar', express.static('./avatar'));
 //RUTAS DE USERS
 app.post('/user', newUserController);
 app.get('/user/:id', getUserController);
+app.get('/user/:id/votes', getLikesFromUsersController);
+
+app.get('/user/:id/follower', getFollowerUserController);
+app.get('/user/:id/follow', getFollowUserController);
 app.get('/user/', authUser, getMyUserController);
 app.post('/login', loginController);
 app.put('/user/:id', authUser, userProfileController);
-app.post('/user/:id/follow', authUser, followUserController);
+app.post('/user/:id/follow', authUser, createFollowerUserController);
 
 //RUTAS DE LINKS
 app.post('/link', authUser, newLinkController); //Crear un nuevo post
