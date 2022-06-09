@@ -9,6 +9,9 @@ async function main() {
 
     console.log('borrando tablas existentes');
     await connection.query(`
+      DROP TABLE IF EXISTS comments;
+      `);
+    await connection.query(`
       DROP TABLE IF EXISTS follow;
       `);
     await connection.query(`
@@ -64,8 +67,20 @@ async function main() {
           id INTEGER PRIMARY KEY AUTO_INCREMENT,
           user_id INTEGER NOT NULL,
          follower_id INTEGER NOT NULL,
+         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           FOREIGN KEY (follower_id) REFERENCES users(id),
           FOREIGN KEY (user_id) REFERENCES users(id)
+      );
+      `);
+    await connection.query(`
+      CREATE TABLE comments (
+          id INTEGER PRIMARY KEY AUTO_INCREMENT,
+          post_id INTEGER NOT NULL,
+          post_user_id INTEGER NOT NULL,
+          comentario TEXT NOT NULL,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (post_id) REFERENCES links(id),
+          FOREIGN KEY (post_user_id) REFERENCES users(id)
       );
       `);
   } catch (error) {
