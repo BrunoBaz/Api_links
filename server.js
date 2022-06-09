@@ -28,7 +28,7 @@ const {
 } = require('./controllers/links/createCommentController');
 const {
   getCommentsByIdController,
-} = require('./controllers/links/getCommentsByIdController ');
+} = require('./controllers/links/getCommentsByIdController');
 
 //Controladores usuarios
 const { getUserController } = require('./controllers/users/getUserController');

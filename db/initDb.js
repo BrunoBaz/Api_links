@@ -76,11 +76,11 @@ async function main() {
       CREATE TABLE comments (
           id INTEGER PRIMARY KEY AUTO_INCREMENT,
           post_id INTEGER NOT NULL,
-          post_user_id INTEGER NOT NULL,
+         user_id INTEGER NOT NULL,
           comentario TEXT NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           FOREIGN KEY (post_id) REFERENCES links(id),
-          FOREIGN KEY (post_user_id) REFERENCES users(id)
+          FOREIGN KEY (user_id) REFERENCES users(id)
       );
       `);
   } catch (error) {

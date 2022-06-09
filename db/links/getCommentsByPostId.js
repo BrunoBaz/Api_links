@@ -6,7 +6,7 @@ const getCommentsByPostId = async (idPost) => {
   try {
     connection = await getConnection();
     const [result] = await connection.query(
-      `SELECT c.post_id, c.user_id, c.comentario, u.userName FROM comments c LEFT JOIN users u ON u.id=c.user_id WHERE c.post_id=?; `,
+      `SELECT c.id, c.post_id, c.user_id, c.comentario, u.userName, u.imagen FROM comments c LEFT JOIN users u ON u.id=c.user_id WHERE c.post_id=?; `,
       [idPost]
     );
 

@@ -6,7 +6,7 @@ const createComment = async (id, userId, comentario) => {
     connection = await getConnection();
     const [result] = await connection.query(
       `
-      INSERT INTO comments (post_id,post_user_id, comentario) VALUES (?,?,?)`,
+      INSERT INTO comments (post_id,user_id, comentario) VALUES (?,?,?)`,
       [id, userId, comentario]
     );
     return result.insertId;

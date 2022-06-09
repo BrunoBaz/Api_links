@@ -3,6 +3,7 @@ const createCommentController = async (req, res, next) => {
   try {
     const { comentario } = req.body;
     const { id } = req.params;
+    console.log({ comentario });
     await createComment(id, req.userId, comentario);
 
     res.send({
