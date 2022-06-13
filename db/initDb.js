@@ -65,11 +65,11 @@ async function main() {
     await connection.query(`
       CREATE TABLE follow (
           id INTEGER PRIMARY KEY AUTO_INCREMENT,
-          user_id INTEGER NOT NULL,
-         follower_id INTEGER NOT NULL,
+          main_user_id INTEGER NOT NULL,
+         seguido_id INTEGER NOT NULL,
          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-          FOREIGN KEY (follower_id) REFERENCES users(id),
-          FOREIGN KEY (user_id) REFERENCES users(id)
+          FOREIGN KEY (seguido_id) REFERENCES users(id),
+          FOREIGN KEY (main_user_id) REFERENCES users(id)
       );
       `);
     await connection.query(`

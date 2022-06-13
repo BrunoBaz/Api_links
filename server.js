@@ -55,6 +55,7 @@ const {
 
 const cors = require('cors');
 const { authUser } = require('./middlewares/auth');
+const { getAllUserController } = require('./controllers/users/getAllUsers');
 const app = express();
 
 //APPS
@@ -68,6 +69,7 @@ app.use('/avatar', express.static('./avatar'));
 //RUTAS DE USERS
 app.post('/user', newUserController);
 app.get('/user/:id', getUserController);
+app.get('/users', getAllUserController);
 app.get('/user/:id/votes', getLikesFromUsersController);
 app.get('/user/:id/follower', getFollowerUserController);
 app.get('/user/:id/follow', getFollowUserController);
