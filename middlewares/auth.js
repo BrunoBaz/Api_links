@@ -7,7 +7,6 @@ const { generateError } = require('../helpers');
 //FUNCION PARA COMPROBAR AUTORIZACION DEL USUARIO
 const authUser = (req, res, next) => {
   try {
-    //console.log(req.headers);
     console.log('entramos al controlador para verificar token');
     const { authorization } = req.headers;
 
@@ -23,7 +22,6 @@ const authUser = (req, res, next) => {
     } catch {
       throw generateError('Token incorrecto', 401);
     }
-    //console.log(token);
 
     //metemos la información del token en la request para usarla en el controlador
     req.userId = token.id;

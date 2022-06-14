@@ -56,6 +56,9 @@ const {
 const cors = require('cors');
 const { authUser } = require('./middlewares/auth');
 const { getAllUserController } = require('./controllers/users/getAllUsers');
+const {
+  getCountCommentsController,
+} = require('./controllers/links/getCountCommentsController');
 const app = express();
 
 //APPS
@@ -82,6 +85,7 @@ app.post('/user/:id/follow', authUser, createFollowerUserController);
 app.post('/link', authUser, newLinkController); //Crear un nuevo post
 app.get('/link', getAllLinksController); //Seleccionar todos los posts
 app.get('/link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
+app.get('/link/comments', getCountCommentsController); //Seleccionar todos los posts con votos
 app.get('/link/votes/:id', getAllLinksWithVotesByIdController); //Seleccionar todos los posts con votos
 app.get('/link/:id', getSinglePostController); //Seleccionar post específico
 app.post('/link/:id/comments', authUser, createCommentController); //Seleccionar post específico

@@ -7,7 +7,6 @@ const { getUserByEmail } = require('../../db/users/getUserByEmail');
 const loginController = async (req, res, next) => {
   console.log('pasamos por el controlador para el login');
   try {
-    //console.log(req.body);
     const { email, password } = req.body;
 
     if (!email || !password) {

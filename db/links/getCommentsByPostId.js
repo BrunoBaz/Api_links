@@ -13,7 +13,7 @@ const getCommentsByPostId = async (idPost) => {
     if (result[0] === undefined) {
       throw generateError(`No existe el post con id:${idPost}`, 404);
     }
-    console.log('result', result[0]);
+
     return result;
   } finally {
     if (connection) {

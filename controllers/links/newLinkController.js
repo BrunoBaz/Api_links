@@ -12,7 +12,7 @@ const newLinkController = async (req, res, next) => {
       descripcion
     );
     const link = await getSinglePost(id);
-    console.log(link);
+
     res.send({
       status: 'ok',
       data: link,

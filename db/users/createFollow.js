@@ -5,7 +5,7 @@ const createFollow = async (idUser, idseguido) => {
   let connection;
   try {
     connection = await getConnection();
-    console.log({ idUser, idseguido });
+
     const [existingUser] = await connection.query(
       `SELECT id FROM follow WHERE main_user_id= ? AND seguido_id=?`,
       [idUser, idseguido]

@@ -9,11 +9,11 @@ const getSinglePost = async (idPost) => {
       `SELECT links.id, links.url, links.titulo, links.descripcion, links.user_id, links.created_at, u.userName, u.imagen ,COUNT(v.post_id) AS votes FROM links LEFT JOIN votes v ON links.id=v.post_id  INNER JOIN users u ON links.user_id=u.id AND links.id=? GROUP BY links.id ORDER BY links.id DESC`,
       [idPost]
     );
-    console.log(result);
+
     if (result[0] === undefined) {
       throw generateError(`No existe el post con id:${idPost}`, 404);
     }
-    console.log('result', result[0]);
+
     return result[0];
   } finally {
     if (connection) {

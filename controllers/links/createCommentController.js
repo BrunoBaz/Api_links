@@ -1,8 +1,8 @@
 const { createComment } = require('../../db/links/createComment');
 const createCommentController = async (req, res, next) => {
   try {
-    const { comentario } = req.body;
     const { id } = req.params;
+    const { comentario } = req.body;
     console.log({ comentario });
     await createComment(id, req.userId, comentario);
 

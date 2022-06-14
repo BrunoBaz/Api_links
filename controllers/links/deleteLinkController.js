@@ -9,11 +9,9 @@ const deleteLinkController = async (req, res, next) => {
     if (!post.id) {
       throw generateError(`No existe ningún post con id ${id}`, 404);
     }
-    console.log(req.userId !== post.user_id);
-    console.log(post);
+
     //Comprobar que el usuario del token es el mismo
-    console.log(req.userId);
-    console.log(post.user_id);
+
     if (req.userId !== post.user_id) {
       throw generateError(
         'Estas intentando borrar un post que no es tuyo',

@@ -12,7 +12,7 @@ const userProfileController = async (req, res, next) => {
     const { userName, nombre, email, biografia, telefono } = req.body;
     const user = await getUserById(req.userId);
     let imageFileName;
-    //console.log(req.files);
+
     if (req.files && req.files.imagen) {
       //Creo path directorio uploads
       const uploadsDir = path.resolve(__dirname, '../../avatar');
