@@ -4,7 +4,7 @@ const { getSinglePost } = require('../../db/links/getSinglePost');
 const newLinkController = async (req, res, next) => {
   try {
     const { url, titulo, descripcion } = req.body;
-    const validate = await validateUrl(url);
+    const validate = await validateUrl('https://' + url);
     const id = await createPost(
       req.userId,
       validate.value,
