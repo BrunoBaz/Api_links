@@ -72,31 +72,31 @@ app.use(morgan('dev'));
 app.use('/avatar', express.static('./avatar'));
 
 //RUTAS DE USERS
-app.post('user', newUserController);
-app.get('user/:id', getUserController);
-app.get('users', getAllUserController);
-app.get('user/:id/votes', getLikesFromUsersController);
-app.get('user/:id/follower', getFollowerUserController);
-app.get('user/:id/follow', getFollowUserController);
-app.get('user/', authUser, getMyUserController);
-app.post('login', loginController);
-app.put('user/:id', authUser, userProfileController);
-app.post('user/:id/follow', authUser, createFollowerUserController);
+app.post('/user', newUserController);
+app.get('/user/:id', getUserController);
+app.get('/users', getAllUserController);
+app.get('/user/:id/votes', getLikesFromUsersController);
+app.get('/user/:id/follower', getFollowerUserController);
+app.get('/user/:id/follow', getFollowUserController);
+app.get('/user/', authUser, getMyUserController);
+app.post('/login', loginController);
+app.put('/user/:id', authUser, userProfileController);
+app.post('/user/:id/follow', authUser, createFollowerUserController);
 
 //RUTAS DE LINKS
 app.get('/', (req, res) => {
   res.send('Estoy funcionando');
 });
-app.post('link', authUser, newLinkController); //Crear un nuevo post
-app.get('link', getAllLinksController); //Seleccionar todos los posts
-app.get('link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
-app.get('link/comments', getCountCommentsController); //Seleccionar todos los posts con votos
-app.get('link/votes/:id', getAllLinksWithVotesByIdController); //Seleccionar todos los posts con votos
-app.get('link/:id', getSinglePostController); //Seleccionar post específico
-app.post('link/:id/comments', authUser, createCommentController); //Seleccionar post específico
-app.get('link/:id/comments', getCommentsByIdController); //Seleccionar post específico
-app.post('link/:id/votes', authUser, voteLinkController); //Añadir un voto a un post especifico
-app.delete('link/:id', authUser, deleteLinkController); //Eliminar un post
+app.post('/link', authUser, newLinkController); //Crear un nuevo post
+app.get('/link', getAllLinksController); //Seleccionar todos los posts
+app.get('/link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
+app.get('/link/comments', getCountCommentsController); //Seleccionar todos los posts con votos
+app.get('/link/votes/:id', getAllLinksWithVotesByIdController); //Seleccionar todos los posts con votos
+app.get('/link/:id', getSinglePostController); //Seleccionar post específico
+app.post('/link/:id/comments', authUser, createCommentController); //Seleccionar post específico
+app.get('/link/:id/comments', getCommentsByIdController); //Seleccionar post específico
+app.post('/link/:id/votes', authUser, voteLinkController); //Añadir un voto a un post especifico
+app.delete('/link/:id', authUser, deleteLinkController); //Eliminar un post
 
 //Middleware de error 404
 app.use((req, res) => {
