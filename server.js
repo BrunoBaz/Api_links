@@ -110,6 +110,6 @@ app.use((error, req, res, next) => {
 });
 
 //LANZAMOS
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`Servidor en localhost:4000`);
 });
