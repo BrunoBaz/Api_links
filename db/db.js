@@ -24,6 +24,7 @@ const getConnection = async () => {
   if (!pool) {
     pool = mysql.createPool(process.env.JAWSDB);
   }
+  console.log(process.env.JAWSDB);
   return await pool.getConnection();
 };
 
