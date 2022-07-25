@@ -115,7 +115,7 @@ app.use((error, req, res, next) => {
 });
 
 //LANZAMOS
-console.log(process.env.JAWSDB);
+console.log(process.env.);
 console.log(process.env.PORT);
 app.listen(PORT, () => {
   console.log(`Servidor en ${PORT}`);

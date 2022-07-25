@@ -1,10 +1,11 @@
 const mysql = require('mysql2/promise');
 
-/* const { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE } = process.env; */
+const { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE } =
+  process.env.JAWSDB;
 
 let pool;
 
-/* const getConnection = async () => {
+const getConnection = async () => {
   if (!pool) {
     pool = mysql.createPool({
       connectionLimit: 10,
@@ -19,14 +20,5 @@ let pool;
 };
 
 module.exports = { getConnection };
- */
-console.log(process.env.JAWSDB);
-const getConnection = async () => {
-  if (!pool) {
-    pool = mysql.createPool(process.env.JAWSDB);
-  }
-
-  return await pool.getConnection();
-};
 
 module.exports = { getConnection };
