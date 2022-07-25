@@ -29,11 +29,11 @@
     "mysql2": "^2.3.3",
     "nanoid": "^3.3.3",
     "sequelize": "^6.21.3",
-    "sharp": "^0.30.4"
+    "sharp": "^0.30.4",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^8.14.0",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2"
   }
