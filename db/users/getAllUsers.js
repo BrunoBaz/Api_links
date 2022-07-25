@@ -8,12 +8,12 @@ const getAllUsers = async () => {
 
   try {
     connection = await getConnection();
-
     const [result] = await connection.query(
       `
       SELECT * FROM users 
       `
     );
+    console.log(connection);
 
     if (result.length === 0) {
       throw generateError('No hay ningun usuario registrado');
