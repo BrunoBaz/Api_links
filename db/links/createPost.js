@@ -7,7 +7,7 @@ const createPost = async (userId, titulo, url, descripcion) => {
     const [result] = await connection.query(
       `
       INSERT INTO links (user_id, url, titulo, descripcion) VALUES (?,?,?,?)`,
-      [userId, titulo, url, descripcion]
+      [userId, titulo, 'https://' + url, descripcion]
     );
     return result.insertId;
   } finally {
