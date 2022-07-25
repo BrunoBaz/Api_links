@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const expressFileUpload = require('express-fileupload');
 const morgan = require('morgan');
+
 //Controladores links
 const {
   voteLinkController,
@@ -60,6 +61,7 @@ const {
   getCountCommentsController,
 } = require('./controllers/links/getCountCommentsController');
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 //APPS
 app.use(cors());
@@ -82,6 +84,9 @@ app.put('/user/:id', authUser, userProfileController);
 app.post('/user/:id/follow', authUser, createFollowerUserController);
 
 //RUTAS DE LINKS
+app.get('/', (req, res) => {
+  res.send('Estoy funcionando');
+});
 app.post('/link', authUser, newLinkController); //Crear un nuevo post
 app.get('/link', getAllLinksController); //Seleccionar todos los posts
 app.get('/link/votes', getAllLinksWithVotesController); //Seleccionar todos los posts con votos
@@ -110,6 +115,8 @@ app.use((error, req, res, next) => {
 });
 
 //LANZAMOS
-app.listen(process.env.PORT || 4000, () => {
-  console.log(`Servidor en localhost:4000`);
+console.log(process.env.JAWSDB);
+
+app.listen(PORT, () => {
+  console.log(`Servidor en ${PORT}`);
 });

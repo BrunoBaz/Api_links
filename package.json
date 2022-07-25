@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nanoid": "^3.3.3",
+    "sequelize": "^6.21.3",
     "sharp": "^0.30.4"
   },
   "devDependencies": {
